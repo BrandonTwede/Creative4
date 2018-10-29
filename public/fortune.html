@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>City Finder</title>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+</head>
+<body>
+  <div id="siteContainer">
+    <h1>Creativity Project 4</h1>
+    <div class="sidebysideContainer">
+      <div class="sidebysideItem">
+        <h2>Utah City Lookup</h3>
+        Enter A Utah City: <input autocomplete="off" type="text" id="cityfield" value=""><br><br>
+        Suggestion: <span id="txtHint">Empty</span>
+      </div>
+      <div class="sidebysideItem">
+        <h2>Dictionary Search</h3>
+        Enter a word to lookup: <br><input autocomplete="off" type="text" id="wordfield" value="">
+        <input type="submit" id="searchButton" value="Search">
+        <br><br>
+        Definition: <br><span id="definitionfield">Type a word to begin searching</span>
+      </div>
+    </div>
+  </div>
+<script>
+$( "#cityfield" ).keyup(function() {
+  var url = "getcity?q="+$("#cityfield").val();
+  $.getJSON(url,function(data) {
+    var everything;
+    everything = "<ul>";
+    $.each(data, function(i,item) {
+      everything += "<li> "+data[i].city;
+    });
+    everything += "</ul>";
+    $("#txtHint").html(everything);
+  });
+});
+
+$("#searchButton").click(function(){
+  let url = "owlproxy?q="+$("#wordfield").val();
+  $.getJSON(url, function(data){
+    let result = "";
+    if (data.length > 0){
+      for (let i = 0; i < data.length; ++i){
+        result += "<p><strong>" + data[i].type + ":</strong> " + data[i].defenition + "</p>";
+      }
+    } else {
+      result = "Word not found in dictionary";
+    }
+    $("#definitionfield").html(result);
+  });
+});
+
+</script>
+</body>
+</html>
