@@ -12,4 +12,8 @@ router.get('/fortuneproxy', function(req, res, next){
     request(url).pipe(res);
 });
 
+router.get('/lottery', function(req, res, next){
+    
+});
+
 module.exports = router;

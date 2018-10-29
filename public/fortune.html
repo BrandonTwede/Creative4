@@ -2,12 +2,19 @@
 <head>
 <title>Fortune Cookie!</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+<script type="text/javascript" src="loadingoverlay.min.js"></script>
+<script src="script.js"></script>
 </head>
 <body>
   <div id="siteContainer">
     <h1>Creativity Project 4</h1>
-    <img class="center" src="fortune-cookie-clipart.png"/>
+    <div class="center nodrag" id="image-background">
+    <img id="imgCookie" class="center nodrag"  src="fortune-cookie-clipart.png"/>
+    
+    </div>
   </div>
 <script>
 
