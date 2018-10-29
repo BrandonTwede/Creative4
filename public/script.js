@@ -25,22 +25,24 @@ $(document).ready(function(){
         				btnClass: 'btn-blue',
         			    action: function () {
         				$.ajax({
-        				url: "lottery",
-        				type: "GET",
-        				success: 
-        					function(lotto){
-        						$.alert({
-        							title: '',
-        							content: JSON.parse(data).message,
-        								onClose: function () {
-        									window.location.reload(false); 
-        								},
-        						});
-        					}        
-        				});
+            				url: "lottery",
+            				type: "GET",
+            				success: 
+            					function(lotto){
+            						$.alert({
+            						    useBootstrap: false,
+            							title: (JSON.stringify(data[0]['lotto']['numbers']) == JSON.stringify(lotto)) ? "You won!" : "You lost.",
+            							content: "<p>Your numbers: " + data[0]['lotto']['numbers'].toString() + "</p>" +
+            							"<p>Winning numbers: " + lotto.toString() + "</p>",
+            						});
+            					}        
+            				});
         			    },
         			},
-        			cancel: function () {
+        			cancel: {
+        			    text: 'Close',
+        			    action: function () {
+        			    }
         			},
         		}
     	    });
